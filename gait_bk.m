@@ -106,9 +106,11 @@ xlabel('time (s)')
 % plot foot section vertical trajcetory
 figure(4)
 
-FF = 384;
-HS = 364;
-HO = 404;
+
+% indices of events
+FF = 384; % foot flat
+HS = 364; % heel strike
+HO = 404; % heel off
 TO = 426; % retrospectively included
 
 gait_pos = [ FF, HS, HO, TO ];
@@ -143,7 +145,7 @@ ylabel('Vertical reaction force (N)')
 figure(6)
 thigh_vec_yz = kne(:, 2:3) - asi(:, 2:3);
 thigh_length_yz = vecnorm(thigh_vec_yz');
-knee_angle = acos(sum(thigh_vec_yz.*shank_vec(:,2:3),2)'./thigh_length_yz./shank_length_yz)*180/pi;
+knee_angle = acos(sum(thigh_vec_yz.*shank_vec(:,2:3),2)'./thigh_length_yz./shank_length_yz)*180/pi; % use dot product angle equation
 plot(datapt, knee_angle);
 xlabel('marker index')
 ylabel('Knee angle, (^\circ) +ve flexion');
